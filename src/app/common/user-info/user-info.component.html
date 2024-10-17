@@ -1,0 +1,89 @@
+<div class="relative w-full h-full">
+  <app-header class="z-10 relative"></app-header>
+
+  <div class="w-full py-24 px-48 bg-gray-100">
+    <nz-layout>
+      <nz-content class="outer-content">
+        <nz-layout class="inner-layout">
+          <nz-sider
+            nzWidth="250px"
+            nzTheme="light"
+            class="bg-white shadow-lg pt-3"
+          >
+            <ul nz-menu nzMode="inline" class="sider-menu">
+              <li
+                nz-menu-item
+                nzSelected
+                class="flex items-center"
+                (click)="onSelectMenuItem('information')"
+              >
+                <span nz-icon nzType="user" class="mr-2"></span>
+                <span>Thông tin cá nhân</span>
+              </li>
+              <li
+                nz-menu-item
+                class="flex items-center"
+                (click)="onSelectMenuItem('editInformation')"
+              >
+                <span nz-icon nzType="edit" class="mr-2"></span>
+                <span>Chỉnh sửa thông tin cá nhân</span>
+              </li>
+              <li
+                nz-menu-item
+                class="flex items-center"
+                (click)="onSelectMenuItem('contractList')"
+              >
+                <span nz-icon nzType="file-text" class="mr-2"></span>
+                <span>Danh sách hợp đồng</span>
+              </li>
+              <li
+                nz-menu-item
+                class="flex items-center"
+                (click)="onSelectMenuItem('roomInfo')"
+              >
+                <span nz-icon nzType="home" class="mr-2"></span>
+                <span>Thông tin phòng trọ</span>
+              </li>
+              <li
+                nz-menu-item
+                [ngClass]="{ active: activeMenuItem === 'contactHistory' }"
+                class="flex items-center"
+                (click)="onSelectMenuItem('contactHistory')"
+              >
+                <span nz-icon nzType="history" class="mr-2"></span>
+                <span>Lịch sử liên hệ</span>
+              </li>
+              <li
+                nz-menu-item
+                [ngClass]="{ active: activeMenuItem === 'changePassword' }"
+                class="flex items-center"
+                (click)="onSelectMenuItem('changePassword')"
+              >
+                <span nz-icon nzType="lock" class="mr-2"></span>
+                <span>Đổi mật khẩu</span>
+              </li>
+              <li
+                nz-menu-item
+                class="flex items-center"
+                (click)="onSelectMenuItem('logout')"
+              >
+                <span nz-icon nzType="logout" class="mr-2"></span>
+                <span>Đăng xuất</span>
+              </li>
+            </ul>
+          </nz-sider>
+          <nz-content class="inner-content p-6 bg-white shadow-md">
+            <app-information
+              *ngIf="activeMenuItem === 'information'"
+            ></app-information>
+            <app-update-information
+              *ngIf="activeMenuItem === 'editInformation'"
+            ></app-update-information>
+          </nz-content>
+        </nz-layout>
+      </nz-content>
+    </nz-layout>
+  </div>
+
+  <app-footer></app-footer>
+</div>

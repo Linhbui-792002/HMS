@@ -1,0 +1,102 @@
+body {
+    background-color: #f7f9fc;
+}
+
+.sidebar {
+    background-color: #343a40;
+    height: 100vh;
+    padding-top: 20px;
+    position: fixed;
+    left: -250px;
+    width: 250px;
+    transition: left 0.3s ease;
+    z-index: 9999;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar h3, .sidebar p {
+    color: #fff;
+}
+
+.sidebar .nav-link {
+    color: #adb5bd;
+    font-size: 0.9rem;
+}
+
+.sidebar .nav-link:hover {
+    color: #fff;
+    background-color: #495057;
+}
+
+.main-content {
+    padding: 20px;
+}
+
+.top-controls {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.buttons {
+    margin-top: 10px;
+}
+
+.buttons .btn {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.room-list .card {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    border: none;
+}
+
+.room-list .card-title {
+    font-weight: bold;
+}
+
+.room-list .btn-sm {
+    margin-right: 10px;
+}
+
+.sidebar-toggle-btn {
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10000;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        left: -250px;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .top-controls {
+        flex-direction: column;
+    }
+
+    .top-controls .form-select,
+    .top-controls input {
+        margin-bottom: 10px;
+    }
+
+    .room-list {
+        margin-top: 20px;
+    }
+}

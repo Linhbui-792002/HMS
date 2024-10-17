@@ -1,0 +1,61 @@
+<app-notification
+  *ngIf="showNotification"
+  [type]="notificationType"
+  [message]="notificationMessage"
+></app-notification>
+<app-loading></app-loading>
+<ng-container>
+  <form
+    nz-form
+    [formGroup]="termsForm"
+    nzLayout="vertical"
+    (ngSubmit)="handleOk()"
+  >
+    <!-- Tên điều khoản -->
+    <nz-form-item>
+      <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="termName" nzRequired
+        >Tên điều khoản</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="32"
+        [nzXs]="64"
+        nzErrorTip="Vui lòng nhập tên điều khoản!"
+      >
+        <input nz-input id="termName" formControlName="termName" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- Mô tả -->
+    <nz-form-item>
+      <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="description" nzRequired
+        >Mô tả</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="32"
+        [nzXs]="64"
+        nzErrorTip="Vui lòng nhập mô tả!"
+      >
+        <textarea
+          nz-input
+          id="description"
+          formControlName="description"
+        ></textarea>
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- Kích hoạt -->
+    <nz-form-item>
+      <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="isActive" nzRequired
+        >Kích hoạt</nz-form-label
+      >
+      <nz-form-control [nzSm]="32" [nzXs]="64">
+        <nz-switch formControlName="isActive"></nz-switch>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item nz-row class="col-span-12" hidden>
+      <nz-form-control>
+        <button nz-button nzType="primary">Đăng ký</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</ng-container>

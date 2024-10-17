@@ -1,0 +1,60 @@
+<ng-container>
+  <form
+    nz-form
+    [formGroup]="buildingServiceForm"
+    nzLayout="vertical"
+    (ngSubmit)="handleOk()"
+  >
+    <!-- Tên dịch vụ -->
+    <nz-form-item>
+      <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="serviceName" nzRequired
+        >Tên dịch vụ</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="32"
+        [nzXs]="64"
+        nzErrorTip="Vui lòng nhập tên dịch vụ!"
+      >
+        <input nz-input id="serviceName" formControlName="serviceName" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- Giá -->
+    <nz-form-item>
+      <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="price" nzRequired
+        >Giá</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="32"
+        [nzXs]="64"
+        nzErrorTip="Vui lòng nhập giá dịch vụ!"
+      >
+        <input nz-input id="price" type="number" formControlName="price" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- Loại -->
+    <nz-form-item>
+      <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="type">Loại</nz-form-label>
+      <nz-form-control [nzSm]="32" [nzXs]="64">
+        <input nz-input id="type" formControlName="type" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- Kích hoạt -->
+    <nz-form-item>
+      <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="isDelete"
+        >Trạng thái</nz-form-label
+      >
+      <nz-form-control [nzSm]="32" [nzXs]="64">
+        <nz-switch formControlName="isDelete"></nz-switch>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item nz-row class="col-span-12" hidden>
+      <nz-form-control>
+        <button nz-button nzType="primary">Đăng ký</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</ng-container>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Đăng nhập</title>
+</head>
+
+<body className="w-full overflow-auto">
+  <div class="font-[sans-serif] bg-white w-full flex items-center h-screen">
+    <div class="grid items-center h-full md:grid-cols-3">
+      <div
+        class="flex flex-col justify-center h-full p-4 space-y-16 max-md:order-1 bg-gradient-to-r from-gray-900 to-gray-700 lg:px-8">
+        <div>
+          <h4 class="text-lg font-semibold text-white">Tạo tài khoản của bạn</h4>
+          <p class="text-[13px] text-gray-300 mt-3 leading-relaxed">Chào mừng bạn đến với trang đăng ký của chúng tôi!
+            Bắt đầu bằng cách
+            tạo tài khoản của bạn.</p>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold text-white">Đăng ký đơn giản và an toàn</h4>
+          <p class="text-[13px] text-gray-300 mt-3 leading-relaxed">Quy trình đăng ký của chúng tôi được thiết kế để
+            đơn giản và an toàn. Chúng tôi ưu tiên quyền riêng tư và bảo mật dữ liệu của bạn.</p>
+        </div>
+      </div>
+
+      <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" nzLayout="vertical"
+        class="w-full px-4 md:py-auto sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-60 md:col-span-2">
+        <div class="mt-6 mb-6 md:my-auto">
+          <h3 class="text-2xl font-bold text-gray-800">Tạo một tài khoản</h3>
+        </div>
+
+        <div class="grid grid-cols-12 gap-4 md:gap-x-8">
+          <div class="col-span-12 md:col-span-12">
+            <nz-form-item class="col-span-12">
+              <nz-form-label [nzSm]="32" [nzXs]="64">Bạn muốn tạo tài khoản cho ?</nz-form-label>
+              <nz-form-control [nzSm]="32" [nzXs]="64">
+                <nz-radio-group formControlName="role">
+                  <label nz-radio-button [nzValue]="'Resident'">Khách Thuê</label>
+                  <label nz-radio-button [nzValue]="'Landlord'">Chủ trọ</label>
+                </nz-radio-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <div class="grid grid-cols-12 md:gap-4">
+              <nz-form-item class="col-span-12 md:col-span-6">
+                <nz-form-label [nzSm]="32" [nzXs]="64" nzRequired nzFor="email">Email</nz-form-label>
+                <nz-form-control [nzSm]="32" [nzXs]="64" nzErrorTip="The input is not valid E-mail!">
+                  <input nz-input formControlName="email" id="email" />
+                </nz-form-control>
+              </nz-form-item>
+
+              <nz-form-item class="col-span-12 md:col-span-6">
+                <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="firstName" nzRequired>Họ và tên đệm</nz-form-label>
+                <nz-form-control [nzSm]="32" [nzXs]="64" nzErrorTip="Nhập họ và tên đệm của bạn!">
+                  <input nz-input id="firstName" formControlName="firstName" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+
+            <!-- Mật khẩu & Tên (Ngang hàng) -->
+            <div class="grid grid-cols-12 gap-4">
+              <nz-form-item class="col-span-12 md:col-span-6">
+                <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="password" nzRequired>Mật khẩu</nz-form-label>
+                <nz-form-control [nzSm]="32" [nzXs]="64" nzErrorTip="Hãy nhập mật khẩu của bạn!">
+                  <input nz-input type="password" id="password" formControlName="password"
+                    (ngModelChange)="updateConfirmValidator()" />
+                </nz-form-control>
+              </nz-form-item>
+
+              <nz-form-item class="col-span-12 md:col-span-6">
+                <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="lastName" nzRequired>Tên</nz-form-label>
+                <nz-form-control [nzSm]="32" [nzXs]="64" nzErrorTip="Nhập tên của bạn!">
+                  <input nz-input id="lastName" formControlName="lastName" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+
+            <!-- Xác nhận mật khẩu & Số điện thoại (Ngang hàng) -->
+            <div class="grid grid-cols-12 gap-4">
+              <nz-form-item class="col-span-12 md:col-span-6">
+                <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="checkPassword" nzRequired>Nhập lại mật
+                  khẩu</nz-form-label>
+                <nz-form-control [nzSm]="32" [nzXs]="64" [nzErrorTip]="errorTpl">
+                  <input nz-input type="password" formControlName="checkPassword" id="checkPassword" />
+                  <ng-template #errorTpl let-control>
+                    <ng-container *ngIf="control.errors?.['required']">
+                      Hãy xác nhận lại mật khẩu!
+                    </ng-container>
+                    <ng-container *ngIf="control.errors?.['confirm']">
+                      Mật khẩu không trùng khớp!
+                    </ng-container>
+                  </ng-template>
+                </nz-form-control>
+              </nz-form-item>
+
+              <nz-form-item class="col-span-12 md:col-span-6">
+                <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="phoneNumber" nzRequired>Số điện thoại</nz-form-label>
+                <nz-form-control [nzSm]="32" [nzXs]="64" nzErrorTip="Nhập số điện thoại của bạn!">
+                  <input nz-input id="phoneNumber" formControlName="phoneNumber" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+
+            <div class="grid grid-cols-12 gap-4">
+              <nz-form-item class="col-span-12 md:col-span-6">
+                <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="dob" nzRequired>Ngày sinh</nz-form-label>
+                <nz-form-control [nzSm]="32" [nzXs]="64" nzErrorTip="Vui lòng chọn ngày sinh!">
+                  <nz-date-picker formControlName="dob" nzPlaceHolder="Chọn ngày sinh"
+                    [nzFormat]="'dd/MM/yyyy'"></nz-date-picker>
+                </nz-form-control>
+              </nz-form-item>
+
+              <nz-form-item class="col-span-12 md:col-span-6">
+                <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="gender" nzRequired>Giới tính</nz-form-label>
+                <nz-form-control [nzSm]="32" [nzXs]="64">
+                  <nz-radio-group formControlName="gender">
+                    <label nz-radio [nzValue]="false">Nam</label>
+                    <label nz-radio [nzValue]="true">Nữ</label>
+                  </nz-radio-group>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+
+          <div class="col-span-12 ">
+            <!-- Location (Tỉnh/Quận/Xã) -->
+            <div class="grid grid-cols-12 md:gap-x-4 lg:gap-x-4 sm:gap-x-4">
+              <nz-form-item class="col-span-12 md:col-span-6">
+                <nz-form-label [nzSm]="32" [nzXs]="64">Tỉnh/Thành phố</nz-form-label>
+                <nz-form-control [nzSm]="32" [nzXs]="64" nzErrorTip="Vui lòng chọn tỉnh/thành phố">
+                  <nz-select formControlName="city" nzPlaceHolder="Chọn tỉnh/thành phố"
+                    (ngModelChange)="onProvinceChange($event)" [nzShowSearch]="true">
+                    <nz-option *ngFor="let province of provincesList" [nzLabel]="province.name"
+                      [nzValue]="province.code"></nz-option>
+                  </nz-select>
+                </nz-form-control>
+              </nz-form-item>
+
+              <nz-form-item class="col-span-12 md:col-span-6">
+                <nz-form-label [nzSm]="32" [nzXs]="64">Quận/Huyện</nz-form-label>
+                <nz-form-control [nzSm]="32" [nzXs]="64" nzErrorTip="Vui lòng chọn quận/huyện">
+                  <nz-select formControlName="districtOrCounty" nzPlaceHolder="Chọn quận/huyện"
+                    [disabled]="!districtsList.length" (ngModelChange)="onDistrictChange($event)" [nzShowSearch]="true">
+                    <nz-option *ngFor="let district of districtsList" [nzLabel]="district.name"
+                      [nzValue]="district.code"></nz-option>
+                  </nz-select>
+                </nz-form-control>
+              </nz-form-item>
+
+              <nz-form-item class="col-span-12 md:col-span-6">
+                <nz-form-label [nzSm]="32" [nzXs]="64">Xã/Phường</nz-form-label>
+                <nz-form-control [nzSm]="32" [nzXs]="64" nzErrorTip="Vui lòng chọn xã/phường">
+                  <nz-select formControlName="communeOrWard" nzPlaceHolder="Chọn xã/phường"
+                    [disabled]="!communesList.length" [nzShowSearch]="true">
+                    <nz-option *ngFor="let commune of communesList" [nzLabel]="commune.name"
+                      [nzValue]="commune.code"></nz-option>
+                  </nz-select>
+                </nz-form-control>
+              </nz-form-item>
+
+              <nz-form-item class="col-span-12">
+                <nz-form-label [nzSm]="64" [nzXs]="64" nzFor="streetAddress">Nhập địa chỉ</nz-form-label>
+                <nz-form-control [nzSm]="64" [nzXs]="64">
+                  <input nz-input id="streetAddress" formControlName="streetAddress" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <!-- Submit Button -->
+          <nz-form-item nz-row class="col-span-12">
+            <nz-form-control>
+              <button nz-button nzType="primary">Đăng ký</button>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="col-span-3">
+          <p class="text-md">Bạn đã có tài khoản? <a routerLink="/login"
+              class="!text-t-orange hover:!text-t-orange">Đăng nhập</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+  <app-loading></app-loading>
+  <app-verify-otp [(isVisible)]="isOtpModalVisible" (isVisibleChange)="handleOtpModalClose($event)"></app-verify-otp>
+  <app-notification *ngIf="showNotification" [type]="notificationType" [message]="notificationMessage"></app-notification>
+</body>
+
+</html>

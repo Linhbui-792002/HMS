@@ -1,0 +1,5 @@
+<div *ngIf="isVisible" [class]="getClass()" role="alert">
+    <span>{{ message }}</span>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeMessage()"></button>
+  </div>
+  

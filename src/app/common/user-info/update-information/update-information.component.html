@@ -1,0 +1,194 @@
+<div
+  class="update-information user-information p-6 bg-white shadow-lg rounded-lg transition-all duration-300 ease-in-out hover:shadow-2xl"
+>
+  <h2 class="text-3xl font-bold mb-4 text-gray-800">
+    Cập nhật thông tin cá nhân
+  </h2>
+
+  <form
+    nz-form
+    [formGroup]="updateForm"
+    (ngSubmit)="submitUpdateForm()"
+    class="space-y- w-full"
+  >
+    <div class="flex flex-col md:flex-row md:gap-4">
+      <div class="flex-1">
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="28" nzRequired nzFor="firstName"
+            >Họ và tên đệm</nz-form-label
+          >
+          <nz-form-control
+            [nzSm]="24"
+            [nzXs]="34"
+            nzErrorTip="Nhập họ và tên đệm của bạn!"
+          >
+            <input nz-input formControlName="firstName" id="firstName" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="28" nzRequired nzFor="lastName"
+            >Tên</nz-form-label
+          >
+          <nz-form-control
+            [nzSm]="24"
+            [nzXs]="34"
+            nzErrorTip="Nhập tên của bạn!"
+          >
+            <input nz-input formControlName="lastName" id="lastName" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="28" nzRequired nzFor="dob"
+            >Ngày sinh</nz-form-label
+          >
+          <nz-form-control
+            nzErrorTip="Vui lòng chọn ngày sinh!"
+            [nzSm]="24"
+            [nzXs]="34"
+          >
+            <nz-date-picker
+              formControlName="dob"
+              nzPlaceHolder="Chọn ngày sinh"
+              [nzFormat]="'dd/MM/yyyy'"
+              class="w-full"
+            ></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div class="flex-1">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="email" [nzSm]="6" [nzXs]="28"
+            >Email</nz-form-label
+          >
+          <nz-form-control
+            [nzSm]="24"
+            [nzXs]="34"
+            nzErrorTip="The input is not valid E-mail!"
+          >
+            <input nz-input type="email" formControlName="email" id="email" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="28" nzRequired nzFor="phoneNumber"
+            >Số điện thoại</nz-form-label
+          >
+          <nz-form-control
+            [nzSm]="24"
+            [nzXs]="34"
+            nzErrorTip="Nhập số điện thoại của bạn!"
+          >
+            <input nz-input formControlName="phoneNumber" id="phoneNumber" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="gender" [nzSm]="6" [nzXs]="28"
+            >Giới tính</nz-form-label
+          >
+          <nz-form-control>
+            <nz-radio-group formControlName="gender">
+              <label nz-radio [nzValue]="false">Nam</label>
+              <label nz-radio [nzValue]="true">Nữ</label>
+            </nz-radio-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-12 gap-4">
+      <nz-form-item class="col-span-12 md:col-span-6">
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="city"
+          >Tỉnh/Thành phố</nz-form-label
+        >
+        <nz-form-control
+          [nzSm]="24"
+          [nzXs]="34"
+          nzErrorTip="Vui lòng chọn tỉnh/thành phố"
+        >
+          <nz-select
+            formControlName="city"
+            nzPlaceHolder="Chọn tỉnh/thành phố"
+            (ngModelChange)="onProvinceChange($event)"
+            [nzShowSearch]="true"
+          >
+            <nz-option
+              *ngFor="let province of provincesList"
+              [nzLabel]="province.name"
+              [nzValue]="province.code"
+            ></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item class="col-span-12 md:col-span-6">
+        <nz-form-label
+          [nzSm]="6"
+          [nzXs]="24"
+          nzRequired
+          nzFor="districtOrCounty"
+          >Quận/Huyện</nz-form-label
+        >
+        <nz-form-control
+          [nzSm]="24"
+          [nzXs]="34"
+          nzErrorTip="Vui lòng chọn quận/huyện"
+        >
+          <nz-select
+            formControlName="districtOrCounty"
+            nzPlaceHolder="Chọn quận/huyện"
+            [disabled]="!districtsList.length"
+            (ngModelChange)="onDistrictChange($event)"
+            [nzShowSearch]="true"
+          >
+            <nz-option
+              *ngFor="let district of districtsList"
+              [nzLabel]="district.name"
+              [nzValue]="district.code"
+            ></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item class="col-span-12 md:col-span-6">
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="communeOrWard"
+          >Xã/Phường</nz-form-label
+        >
+        <nz-form-control
+          [nzSm]="24"
+          [nzXs]="34"
+          nzErrorTip="Vui lòng chọn xã/phường"
+        >
+          <nz-select
+            formControlName="communeOrWard"
+            nzPlaceHolder="Chọn xã/phường"
+            [disabled]="!communesList.length"
+            [nzShowSearch]="true"
+          >
+            <nz-option
+              *ngFor="let commune of communesList"
+              [nzLabel]="commune.name"
+              [nzValue]="commune.code"
+            ></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="col-span-12 md:col-span-6">
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="streetAddress"
+          >Địa chỉ</nz-form-label
+        >
+        <nz-form-control>
+          <input nz-input formControlName="streetAddress" id="streetAddress" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="flex justify-center">
+      <button nz-button nzSize="default" class="w-[30%]" nzType="primary">
+        Cập nhật
+      </button>
+    </div>
+  </form>
+</div>

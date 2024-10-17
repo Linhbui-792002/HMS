@@ -1,0 +1,9 @@
+.custom-dropdown {
+  min-width: max-content;
+  text-align: right;
+}
+
+.nz-dropdown-menu {
+  right: 0;
+}
+

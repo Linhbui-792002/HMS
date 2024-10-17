@@ -1,0 +1,56 @@
+<div
+  class="user-information p-6 bg-white shadow-lg rounded-lg transition-all duration-300 ease-in-out hover:shadow-2xl"
+>
+  <h2 class="text-3xl font-bold mb-4 text-gray-800">Thông tin cá nhân</h2>
+  <div class="border-0">
+    <div class="flex flex-row gap-4 w-full">
+      <div class="flex flex-col gap-3 justify-center items-center">
+        <div
+          class="w-44 h-44 bg-gradient-to-r from-blue-500 to-green-500 rounded-full flex flex-col items-center justify-center shadow-md"
+        >
+          <span class="text-[60px] font-bold text-white">
+            {{ userInfo.firstName.charAt(0) }}
+          </span>
+        </div>
+        <span class="text-xl mt-2 font-bold text-gray-800">
+          {{ userInfo.firstName }} {{ userInfo.lastName }}
+        </span>
+      </div>
+      <div class="user-details w-full flex flex-col space-y-4">
+        <div class="flex items-center space-x-4">
+          <div class="flex justify-between items-center flex-grow">
+            <span class="text-xl text-gray-600"><strong>Tên:</strong></span>
+            <span class="text-xl text-gray-800">
+              {{ userInfo.firstName }} {{ userInfo.lastName }}
+            </span>
+          </div>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-xl text-gray-600"
+            ><strong>Số điện thoại:</strong></span
+          >
+          <span class="text-xl text-gray-800">{{ userInfo.phoneNumber }}</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-xl text-gray-600"><strong>Ngày sinh:</strong></span>
+          <span class="text-xl text-gray-800">{{
+            userInfo.dob | date : "dd/MM/yyyy"
+          }}</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-xl text-gray-600"><strong>Giới tính:</strong></span>
+          <span class="text-xl text-gray-800">{{
+            userInfo.gender ? "Nam" : "Nữ"
+          }}</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-xl text-gray-600"><strong>Địa chỉ:</strong></span>
+          <span class="text-xl text-gray-800">
+            {{ userInfo.streetAddress }}, {{ userInfo.communeOrWard }},
+            {{ userInfo.districtOrCounty }}, {{ userInfo.city }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

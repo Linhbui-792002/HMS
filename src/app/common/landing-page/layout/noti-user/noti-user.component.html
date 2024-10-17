@@ -1,0 +1,161 @@
+<div class="flex items-center gap-6">
+  <div class="">
+    <nz-badge [nzCount]="5">
+      <span
+        nz-icon
+        nzType="bell"
+        nzTheme="outline"
+        nz-dropdown
+        [nzDropdownMenu]="notification"
+        nzTrigger="click"
+        class="!my-auto font-mono text-2xl hover:cursor-pointer"
+      ></span>
+    </nz-badge>
+    <nz-dropdown-menu #notification="nzDropdownMenu" class="">
+      <ul nz-menu class="w-[31rem] h-96 relative overflow-auto">
+        <div
+          class="sticky left-0 right-0 z-10 flex items-center justify-between w-full px-4 py-2 -top-1 bg-b-white"
+        >
+          <h3 class="text-lg font-medium">Thông báo</h3>
+          <div class="flex items-center gap-2 ml-auto">
+            <span class="flex items-center gap-1 text-center">
+              <nz-switch [(ngModel)]="isRead" nzSize="small"></nz-switch>
+              <h3 class="align-middle text-md">Chưa đọc</h3>
+            </span>
+            <button
+              nz-button
+              nzType="text"
+              class="rounded-md hover:bg-b-gray/30"
+            >
+              <span
+                nz-tooltip
+                nz-icon
+                nzType="check"
+                nzTooltipTitle="Đánh dấu đã đọc tất cả thông báo"
+                nzTheme="outline"
+                class="cursor-pointer hover:cursor-pointer text-md"
+              ></span>
+            </button>
+          </div>
+        </div>
+        <nz-divider nzType="horizontal" class="!my-1"></nz-divider>
+
+        <!-- content notification  -->
+        <div nz-menu-item class="flex w-full min-h-8 bg-b-gray/50">
+          <div class="pt-2">
+            <div class="flex gap-2">
+              <nz-badge [nzDot]="status">
+                <span nz-icon nzType="notification" nzTheme="outline"></span>
+              </nz-badge>
+              <h3>Chủ trọ: Linh Bùi</h3>
+              <h3>Tiền phòng tháng 12</h3>
+            </div>
+            <div class="flex flex-col w-full">
+              <span class="w-[29rem] truncate ..."
+                >Thông báo đóng tiền phòng tháng 12 hạn nộp ngày 10/12/2024
+                Thông báo đóng tiền phòng tháng 12 hạn nộp ngày 10/12/2024
+              </span>
+              <span class="font-thin">10/10/2024</span>
+              <a href="#" class="hover:!text-t-orange ml-auto mr-2"
+                >Xem chi tiết</a
+              >
+            </div>
+          </div>
+        </div>
+        <div nz-menu-item class="flex w-full min-h-8 bg-b-gray/50">
+          <div class="pt-2">
+            <div class="flex gap-2">
+              <nz-badge [nzDot]="status">
+                <span nz-icon nzType="notification" nzTheme="outline"></span>
+              </nz-badge>
+              <h3>Chủ trọ: Linh Bùi</h3>
+              <h3>Tiền phòng tháng 12</h3>
+            </div>
+            <div class="flex flex-col w-full">
+              <span class="w-[29rem] truncate ..."
+                >Thông báo đóng tiền phòng tháng 12 hạn nộp ngày 10/12/2024
+                Thông báo đóng tiền phòng tháng 12 hạn nộp ngày 10/12/2024
+              </span>
+              <span class="font-thin">10/10/2024</span>
+              <a href="#" class="hover:!text-t-orange ml-auto mr-2"
+                >Xem chi tiết</a
+              >
+            </div>
+          </div>
+        </div>
+        <div nz-menu-item class="flex w-full min-h-8 bg-b-gray/50">
+          <div class="pt-2">
+            <div class="flex gap-2">
+              <nz-badge [nzDot]="status">
+                <span nz-icon nzType="notification" nzTheme="outline"></span>
+              </nz-badge>
+              <h3>Chủ trọ: Linh Bùi</h3>
+              <h3>Tiền phòng tháng 12</h3>
+            </div>
+            <div class="flex flex-col w-full">
+              <span class="w-[29rem] truncate ..."
+                >Thông báo đóng tiền phòng tháng 12 hạn nộp ngày 10/12/2024
+                Thông báo đóng tiền phòng tháng 12 hạn nộp ngày 10/12/2024
+              </span>
+              <span class="font-thin">10/10/2024</span>
+              <a href="#" class="hover:!text-t-orange ml-auto mr-2"
+                >Xem chi tiết</a
+              >
+            </div>
+          </div>
+        </div>
+        <div nz-menu-item class="flex w-full min-h-8 bg-b-gray/50">
+          <div class="pt-2">
+            <div class="flex gap-2">
+              <nz-badge [nzDot]="status">
+                <span nz-icon nzType="notification" nzTheme="outline"></span>
+              </nz-badge>
+              <h3>Chủ trọ: Linh Bùi</h3>
+              <h3>Tiền phòng tháng 12</h3>
+            </div>
+            <div class="flex flex-col w-full">
+              <span class="w-[29rem] truncate ..."
+                >Thông báo đóng tiền phòng tháng 12 hạn nộp ngày 10/12/2024
+                Thông báo đóng tiền phòng tháng 12 hạn nộp ngày 10/12/2024
+              </span>
+              <span class="font-thin">10/10/2024</span>
+              <a href="#" class="hover:!text-t-orange ml-auto mr-2"
+                >Xem chi tiết</a
+              >
+            </div>
+          </div>
+        </div>
+        <!-- content notification  -->
+
+        <nz-divider nzType="horizontal" class="!my-1"></nz-divider>
+        <div class="flex items-center justify-center w-full px-4">
+          <a href="#" class="hover:!text-t-orange">Xem thêm</a>
+        </div>
+      </ul>
+    </nz-dropdown-menu>
+  </div>
+  <div>
+    <nz-avatar
+      nz-dropdown
+      [nzDropdownMenu]="menu"
+      nzSize="default"
+      nzIcon="user"
+      nzSrc="https://hoanghamobile.com/tin-tuc/wp-content/uploads/2024/04/anh-con-cho-26.jpg"
+      class="cursor-pointer"
+    ></nz-avatar>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <ul nz-menu>
+        <li nz-menu-item routerLink="/user-info">Thông tin cá nhân</li>
+        <li nz-menu-item>Danh sách hợp đồng</li>
+        <li nz-menu-item>Thông tin phòng trọ</li>
+        <li nz-menu-item>Lịch sử liên hệ</li>
+        <li nz-menu-item>Đổi mật khẩu</li>
+        <nz-divider
+          nzType="horizontal"
+          class="w-full !my-0 bg-b-gray"
+        ></nz-divider>
+        <li nz-menu-item>Đăng xuất</li>
+      </ul>
+    </nz-dropdown-menu>
+  </div>
+</div>

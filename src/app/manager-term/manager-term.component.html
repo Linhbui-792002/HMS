@@ -1,0 +1,110 @@
+<app-notification
+  *ngIf="showNotification"
+  [type]="notificationType"
+  [message]="notificationMessage"
+></app-notification>
+<app-loading></app-loading>
+<div class="mt-4 p-6 bg-white shadow-lg rounded-lg">
+  <!-- Breadcrumb -->
+  <nz-breadcrumb class="mb-4">
+    <nz-breadcrumb-item>Trang chủ</nz-breadcrumb-item>
+    <nz-breadcrumb-item>Điều khoản và điều kiện</nz-breadcrumb-item>
+  </nz-breadcrumb>
+
+  <!-- Search và Thêm mới -->
+  <div class="flex justify-between items-center mb-4">
+    <!-- Search Input -->
+    <nz-input-group nzSearch nzSize="large" class="w-1/3">
+      <input
+        type="text"
+        nz-input
+        placeholder="Tìm kiếm điều khoản"
+        [(ngModel)]="searchValue"
+        (ngModelChange)="searchData()"
+        class="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </nz-input-group>
+    <button
+      nz-button
+      nzType="primary"
+      (click)="showAddModal()"
+      class="flex items-center"
+      nzSize="large"
+    >
+      <span nz-icon nzType="plus-circle" nzTheme="outline" class="mr-1"></span>
+      Thêm mới điều khoản
+    </button>
+  </div>
+
+  <!-- Table -->
+  <nz-table
+    #basicTable
+    [nzData]="filteredData"
+    [nzBordered]="true"
+    class="mt-4"
+  >
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="p-4 text-left text-gray-600">STT</th>
+        <th class="p-4 text-left text-gray-600">Tên Điều Khoản</th>
+        <th class="p-4 text-left text-gray-600">Chi tiết</th>
+        <th class="p-4 text-left text-gray-600">Trạng thái</th>
+        <th class="p-4 !text-right text-gray-600">Hành động</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let data of initTermResponse; let index = index"
+        class="hover:bg-gray-100"
+      >
+        <td class="p-4">{{ index + 1 }}</td>
+        <td class="p-4">{{ data?.termName }}</td>
+        <td class="p-4">{{ data?.description }}</td>
+        <td class="p-4">
+          <span
+            [ngClass]="
+              data?.isActive
+                ? 'border border-green-500 text-green-500'
+                : 'border border-red-500 text-red-500'
+            "
+            class="p-1 rounded-lg inline-block"
+          >
+            {{ data?.isActive ? "Đang sử dụng" : "Không sử dụng" }}
+          </span>
+        </td>
+
+        <td class="p-4 space-x-2 flex items-center justify-end">
+          <span
+            nz-tooltip
+            (click)="showEditModal(data)"
+            nzTooltipTitle="Chỉnh sửa"
+          >
+            <button
+              nz-button
+              nzType="text"
+              class="text-blue-500 hover:text-blue-700"
+            >
+              <span nz-icon nzType="edit" nzTheme="outline"></span>
+            </button>
+          </span>
+          <nz-divider nzType="vertical"></nz-divider>
+          <span
+            nz-tooltip
+            (click)="showDeleteModal(data?._id)"
+            nzTooltipTitle="Xóa"
+          >
+            <button
+              nz-button
+              nzType="text"
+              class="text-red-500 hover:text-red-700"
+            >
+              <span nz-icon nzType="delete" nzTheme="outline"></span>
+            </button>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+  <!-- Modal for adding term -->
+</div>

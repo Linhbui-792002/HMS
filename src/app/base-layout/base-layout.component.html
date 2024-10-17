@@ -1,0 +1,154 @@
+<nz-layout class="h-screen">
+  <!-- Sider Menu start -->
+  <nz-sider
+    nzCollapsible
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null"
+    [nzWidth]="250"
+    class="select-none"
+  >
+    <div class="logo"></div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <!-- Báo cáo -->
+      <li nz-menu-item class="flex items-center">
+        <span nz-icon nzType="file-search" class=""></span>
+        <span>Thống kê</span>
+      </li>
+
+      <!-- Quản lý nhà trọ -->
+      <li nz-submenu nzTitle="Quản lý dãy nhà" nzIcon="apartment">
+        <ul>
+          <li
+            nz-menu-item
+            class="flex items-center"
+            (click)="onSelectMenuItem('buildingService')"
+          >
+            <span nz-icon nzType="home" class="mr-2"></span>
+            <span>Quản lý tòa nhà - Phòng</span>
+          </li>
+          <li nz-menu-item class="flex items-center">
+            <span nz-icon nzType="dashboard" class="mr-2"></span>
+            <span>Quản lý công tơ điện</span>
+          </li>
+          <li
+            nz-menu-item
+            class="flex items-center"
+            (click)="onSelectMenuItem('furniture')"
+          >
+            <span nz-icon nzType="appstore" class="mr-2"></span>
+            <span>Quản lý nội thất</span>
+          </li>
+          <li
+            nz-menu-item
+            class="flex items-center"
+            (click)="onSelectMenuItem('buildingService')"
+          >
+            <span nz-icon nzType="tool" class="mr-2"></span>
+            <span>Quản lý dịch vụ tòa nhà</span>
+          </li>
+          <!-- <li nz-menu-item class="flex items-center">
+            <span nz-icon nzType="home" class="mr-2"></span>
+            <span>Quản lý phòng</span>
+          </li> -->
+        </ul>
+      </li>
+
+      <!-- Quản lý hợp đồng và điều khoản -->
+      <li nz-submenu nzTitle="Quản lý Hợp đồng" nzIcon="file-done">
+        <ul>
+          <li nz-menu-item class="flex items-center">
+            <span nz-icon nzType="file-done" class="mr-2"></span>
+            <span>Hợp đồng</span>
+          </li>
+          <li nz-menu-item class="flex items-center">
+            <span nz-icon nzType="file-text" class="mr-2"></span>
+            <span>Mẫu hợp đồng</span>
+          </li>
+          <li
+            nz-menu-item
+            class="flex items-center"
+            (click)="onSelectMenuItem('term')"
+          >
+            <span nz-icon nzType="file-protect" class="mr-2"></span>
+            <span>Điều khoản và điều kiện</span>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Quản lý nhân sự và bài viết -->
+      <li nz-submenu nzTitle="Nhân sự và Bài viết" nzIcon="team">
+        <ul>
+          <li nz-menu-item class="flex items-center">
+            <span nz-icon nzType="team" class="mr-2"></span>
+            <span>Quản lý nhân viên</span>
+          </li>
+          <li nz-menu-item class="flex items-center">
+            <span nz-icon nzType="message" class="mr-2"></span>
+            <span>Quản lý bài viết</span>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Quản lý tài chính -->
+      <li nz-submenu nzTitle="Thống kê Tài chính" nzIcon="dollar">
+        <ul>
+          <li nz-menu-item class="flex items-center">
+            <span nz-icon nzType="form" class="mr-2"></span>
+            <span>Quản lý hóa đơn</span>
+          </li>
+          <li nz-menu-item class="flex items-center">
+            <span nz-icon nzType="dollar" class="mr-2"></span>
+            <span>Quản lý thu chi</span>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Các mục quản lý riêng lẻ -->
+      <li nz-menu-item class="flex items-center">
+        <span nz-icon nzType="user" class="mr-2"></span>
+        <span>Quản lý người dùng</span>
+      </li>
+      <li nz-menu-item class="flex items-center">
+        <span nz-icon nzType="contacts" class="mr-2"></span>
+        <span>Quản lý liên hệ</span>
+      </li>
+    </ul>
+  </nz-sider>
+  <!-- Sider Menu end -->
+
+  <nz-layout>
+    <!-- Header start-->
+    <nz-header>
+      <div class="flex items-center justify-between ml-auto mr-12">
+        <div>
+          <span
+            class="trigger"
+            nz-icon
+            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+            (click)="isCollapsed = !isCollapsed"
+          ></span>
+        </div>
+        <app-noti-user></app-noti-user>
+      </div>
+    </nz-header>
+    <!-- Header end -->
+
+    <!-- Content start -->
+    <nz-content>
+      <app-manager-term *ngIf="visibility.term"></app-manager-term>
+      <app-manager-building-service
+        *ngIf="visibility.buildingService"
+      ></app-manager-building-service>
+      <app-manager-contact *ngIf="visibility.contact"></app-manager-contact>
+      <app-manager-furniture-ui
+        *ngIf="visibility.furniture"
+      ></app-manager-furniture-ui>
+      <app-manager-building *ngIf="visibility.building" />
+    </nz-content>
+    <!-- Content end -->
+
+    <nz-footer class="opacity-45">
+      Hostel Management and Search System - HMS
+    </nz-footer>
+  </nz-layout>
+</nz-layout>

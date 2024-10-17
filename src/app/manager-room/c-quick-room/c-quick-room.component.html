@@ -1,0 +1,79 @@
+<form nz-form [formGroup]="roomForm" (ngSubmit)="submitForm()" nzLayout="vertical" class="w-full px-4">
+  <div class="grid grid-cols-12 md:gap-4">
+
+    <nz-form-item class="col-span-12 md:col-span-6">
+      <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="nameRoom" nzRequired>Tên phòng VD: BE</nz-form-label>
+      <nz-form-control [nzSm]="32" [nzXs]="64" nzErrorTip="Nhập tên phòng của bạn">
+        <input nz-input id="nameRoom" formControlName="nameRoom" [placeholder]="'ví dụ: BE'" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="col-span-12 md:col-span-6">
+      <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="floors" nzRequired>Chọn tầng cần tạo phòng</nz-form-label>
+      <nz-form-control [nzSm]="32" [nzXs]="64" nzErrorTip="Vui lòng chọn loại phòng!">
+        <nz-select formControlName="floors" nzPlaceHolder="Chọn loại phòng" nzMode="multiple">
+          <nz-option *ngFor="let type of [1,2,3,4]" [nzLabel]="type" [nzValue]="type"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="col-span-12 md:col-span-6">
+      <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="numberRoom" nzRequired>Số phòng trên 1 tầng</nz-form-label>
+      <nz-form-control [nzSm]="32" [nzXs]="64" nzErrorTip="Nhập giá phòng!!!">
+        <nz-input-number [nzMin]="0" [nzStep]="1" style="width: 100%" id="numberRoom"
+          formControlName="numberRoom"></nz-input-number>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="col-span-12 md:col-span-6">
+      <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="price" nzRequired>Giá phòng</nz-form-label>
+      <nz-form-control [nzSm]="32" [nzXs]="64" nzErrorTip="Nhập giá phòng!!!">
+        <nz-input-number [nzMin]="0" [nzStep]="1" style="width: 100%" id="price"
+          formControlName="price"></nz-input-number>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="col-span-12 md:col-span-6">
+      <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="area" nzRequired>Diện tích</nz-form-label>
+      <nz-form-control [nzSm]="32" [nzXs]="64" nzErrorTip="Nhập diện tích phòng!!!">
+        <nz-input-number style="width: 100%" [nzMin]="1" [nzStep]="1" id="area"
+          formControlName="area"></nz-input-number>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item class="col-span-12 md:col-span-6">
+      <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="maxPeople" nzRequired>Số người ở tối đa</nz-form-label>
+      <nz-form-control [nzSm]="32" [nzXs]="64" nzErrorTip="Nhập diện tích phòng!!!">
+        <nz-input-number [nzMin]="1" [nzStep]="1" id="maxPeople" formControlName="maxPeople"></nz-input-number>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div formArrayName="furniture" class="col-span-12">
+      <div *ngFor="let item of furniture.controls; let i = index" [formGroupName]="i"
+        class="flex items-center gap-2 mb-2">
+
+        <nz-form-item class="mr-2 min-w-40">
+          <nz-form-label [nzSm]="32" [nzXs]="64" nzRequired>Chọn nội thất</nz-form-label>
+          <nz-form-control [nzSm]="32" [nzXs]="64"
+            [nzErrorTip]="item.get('furnitureId')?.invalid && item.get('furnitureId')?.touched ? 'Vui lòng chọn đồ nội thất!' : ''">
+            <nz-select formControlName="furnitureId" nzPlaceHolder="Chọn đồ nội thất" [nzShowSearch]="true">
+              <nz-option *ngFor="let option of availableFurnitureOptions" [nzLabel]="option.name"
+                [nzValue]="option.id"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item class="mr-2">
+          <nz-form-label [nzSm]="32" [nzXs]="64" nzRequired>Số lượng</nz-form-label>
+          <nz-form-control [nzSm]="32" [nzXs]="64"
+            [nzErrorTip]="item.get('quantity')?.invalid && item.get('quantity')?.touched ? 'Số lượng phải lớn hơn 0!' : ''">
+            <input nz-input formControlName="quantity" type="number" min="1" placeholder="Số lượng" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <button type="button" nz-button nzDanger (click)="removeFurniture(i)">Xóa</button>
+      </div>
+
+      <button type="button" nz-button nzType="primary" (click)="addFurniture()">Thêm đồ nội thất</button>
+    </div>
+
+
+
+  </div>
+</form>

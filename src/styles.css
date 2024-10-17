@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "~ng-zorro-antd/ng-zorro-antd.min.css";
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Public Sans Variable', sans-serif;
+  font-weight: 400;
+}
+a:hover {
+  color: inherit !important;
+}
+
+.container {
+  padding: 0 32px;
+}
+
+.menu-content .ant-menu-title-content {
+  display: flex !important;
+  gap: 2px
+}
+.ant-menu-title-content span::first-line {
+  display: flex !important;
+  align-items: center;
+}
+.cdk-custom .cdk-overlay-pane {
+  width: max-content !important;
+}

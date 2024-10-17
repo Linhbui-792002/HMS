@@ -1,0 +1,73 @@
+<app-notification
+  *ngIf="showNotification"
+  [type]="notificationType"
+  [message]="notificationMessage"
+></app-notification>
+<app-loading></app-loading>
+<ng-container>
+  <form
+    nz-form
+    [formGroup]="furnitureForm"
+    nzLayout="vertical"
+    (ngSubmit)="handleOk()"
+  >
+    <!-- Tên nội thất -->
+    <nz-form-item>
+      <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="name" nzRequired
+        >Tên nội thất</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="32"
+        [nzXs]="64"
+        nzErrorTip="Vui lòng nhập tên nội thất!"
+      >
+        <input nz-input id="name" formControlName="name" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- Số lượng -->
+    <nz-form-item>
+      <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="quantity" nzRequired
+        >Số lượng</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="32"
+        [nzXs]="64"
+        nzErrorTip="Vui lòng nhập số lượng!"
+      >
+        <input
+          nz-input
+          id="quantity"
+          type="number"
+          formControlName="quantity"
+        />
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- Giá -->
+    <nz-form-item>
+      <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="price" nzRequired
+        >Giá</nz-form-label
+      >
+      <nz-form-control [nzSm]="32" [nzXs]="64" nzErrorTip="Vui lòng nhập giá!">
+        <input nz-input id="price" type="number" formControlName="price" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- Trạng thái -->
+    <nz-form-item>
+      <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="isDelete"
+        >Trạng thái</nz-form-label
+      >
+      <nz-form-control [nzSm]="32" [nzXs]="64">
+        <nz-switch formControlName="isDelete"></nz-switch>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item nz-row class="col-span-12" hidden>
+      <nz-form-control>
+        <button nz-button nzType="primary">Đăng ký</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</ng-container>

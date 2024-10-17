@@ -1,0 +1,77 @@
+<div class="w-full overflow-auto max-h-[32rem]">
+  <h2 class="pt-2 pl-6 text-xl">Phòng trọ</h2>
+  <div class="flex justify-between gap-4 py-4 mx-6">
+    <div class="flex gap-3">
+      <input nz-input placeholder="Nhập tên phòng trọ" class="max-w-60">
+      <nz-select nzPlaceHolder="Trạng thái phòng" class="min-w-40">
+        <nz-option nzValue="" nzLabel="Tất cả"></nz-option>
+        <nz-option nzValue="true" nzLabel="Đã thuê"></nz-option>
+        <nz-option nzValue="false" nzLabel="Còn trống"></nz-option>
+      </nz-select>
+      <nz-select nzPlaceHolder="Tầng" class="min-w-32">
+        <nz-option nzValue="" nzLabel="Tất cả"></nz-option>
+        <nz-option nzValue="1" nzLabel="1"></nz-option>
+        <nz-option nzValue="2" nzLabel="2"></nz-option>
+        <nz-option nzValue="3" nzLabel="3"></nz-option>
+      </nz-select>
+      <button nz-button nzType="primary">Lọc</button>
+    </div>
+    <div class="flex items-start h-full gap-2">
+      <button nz-button nzType="text"
+        class="flex items-center w-max !bg-b-green !text-t-white hover:!bg-b-success hover:!text-t-white"
+        (click)="showAddRoomModal()">
+        <span nz-icon nzType="plus-circle" nzTheme="outline"></span>
+        Thêm phòng </button>
+
+      <button nz-button nzType="text"
+        class="flex items-center w-max !bg-b-orange !text-t-white hover:!bg-b-orange hover:!text-t-white"
+        (click)="showAddQuickRoomModal()">
+        <span nz-icon nzType="plus-circle" nzTheme="outline"></span>
+        Tạo phòng nhanh</button>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-10 gap-6 py-4 mx-6">
+    <div *ngFor="let i of [1, 2, 3, 4, 5,6,7,8,9,10]"
+      class="flex flex-col justify-center col-span-12 border-t-2 rounded-sm shadow-lg md:col-span-2 sm:col-span-5 lg:col-span-2 min-h-50 bg-b-white">
+      <div class="flex items-center justify-between w-full gap-3 px-6 pt-4">
+        <!-- trạng thái đã thuê màu green hoặc còn trống mầu (orange)-->
+        <nz-tag [nzColor]="'green'" class="text-center h-max">Đã Thuê</nz-tag>
+
+        <!-- số người ở / tối đa -->
+        <button nz-button nz-dropdown nzSize="small" class="flex items-center rounded-md">
+          <span nz-icon nzType="team" nzTheme="outline"></span>
+          1/2
+        </button>
+      </div>
+      <div class="flex flex-col items-center justify-center gap-1 py-5">
+        <span nz-icon nzType="home" nzTheme="outline" class="text-2xl"></span>
+        <span class="text-xl font-medium text-t-black">Phòng</span>
+        <h2 class="text-xl text-t-black">B101</h2>
+      </div>
+      <nz-divider nzType="horizontal" class="!py-0 !my-0 bg-t-gray"></nz-divider>
+      <div class="flex items-center justify-between">
+        <span nz-tooltip nzTooltipTitle="Thông tin phong" nzTooltipColor="cyan" class="flex justify-center w-full">
+          <button nz-button nzType="text">
+            <span nz-icon nzType="eye" nzTheme="outline" class="text-t-cyan"></span>
+          </button>
+        </span>
+        <nz-divider nzType="vertical" class="!py-0 !mx-0 bg-t-gray"></nz-divider>
+        <span nz-tooltip nzTooltipTitle="Chỉnh sửa" nzTooltipColor="geekblue" class="flex justify-center w-full">
+          <button nz-button nzType="text" (click)="showEditRoomModal()">
+            <span nz-icon nzType="edit" nzTheme="outline" class="text-t-geekblue"></span>
+          </button>
+        </span>
+        <nz-divider nzType="vertical" class="!py-0 !mx-0 bg-t-gray"></nz-divider>
+        <span nz-tooltip nzTooltipTitle="Xóa" nzTooltipColor="red" class="flex justify-center w-full">
+          <button nz-button nzType="text">
+            <span nz-icon nzType="delete" nzTheme="outline" class="text-t-red"></span>
+          </button>
+        </span>
+      </div>
+    </div>
+    <div class="flex justify-end col-span-10">
+      <nz-pagination [nzPageIndex]="1" [nzTotal]="50" nzPageSize="5"></nz-pagination>
+    </div>
+  </div>
+  <div>

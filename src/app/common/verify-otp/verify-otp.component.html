@@ -1,0 +1,26 @@
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Nhập mã OTP" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
+  [nzFooter]="null">
+  <ng-container *nzModalContent>
+    <form [formGroup]="otpForm" class="flex justify-center space-x-2">
+      <input type="text" id="otp-input-0" formControlName="otp1" [(ngModel)]="otpValues[0]"
+        (ngModelChange)="onOtpChange($event, 0)" (keydown)="onKeyDown($event, 0)" maxlength="1"
+        class="w-12 h-12 text-lg text-center border border-gray-300 rounded-lg" style="text-align: center;" />
+      <input type="text" id="otp-input-1" formControlName="otp2" [(ngModel)]="otpValues[1]"
+        (ngModelChange)="onOtpChange($event, 1)" (keydown)="onKeyDown($event, 1)" maxlength="1"
+        class="w-12 h-12 text-lg text-center border border-gray-300 rounded-lg" style="text-align: center;" />
+      <input type="text" id="otp-input-2" formControlName="otp3" [(ngModel)]="otpValues[2]"
+        (ngModelChange)="onOtpChange($event, 2)" (keydown)="onKeyDown($event, 2)" maxlength="1"
+        class="w-12 h-12 text-lg text-center border border-gray-300 rounded-lg" style="text-align: center;" />
+      <input type="text" id="otp-input-3" formControlName="otp4" [(ngModel)]="otpValues[3]"
+        (ngModelChange)="onOtpChange($event, 3)" (keydown)="onKeyDown($event, 3)" maxlength="1"
+        class="w-12 h-12 text-lg text-center border border-gray-300 rounded-lg" style="text-align: center;" />
+      <input type="text" id="otp-input-4" formControlName="otp5" [(ngModel)]="otpValues[4]"
+        (ngModelChange)="onOtpChange($event, 4)" (keydown)="onKeyDown($event, 4)" maxlength="1"
+        class="w-12 h-12 text-lg text-center border border-gray-300 rounded-lg" style="text-align: center;" />
+      <input type="text" id="otp-input-5" formControlName="otp6" [(ngModel)]="otpValues[5]"
+        (ngModelChange)="onOtpChange($event, 5)" (keydown)="onKeyDown($event, 5)" maxlength="1"
+        class="w-12 h-12 text-lg text-center border border-gray-300 rounded-lg" style="text-align: center;" />
+    </form>
+    <p class="mx-auto mt-3 cursor-pointer text-md text-t-orange w-max" (click)="onResendOtp()">Gửi lại OTP</p>
+  </ng-container>
+</nz-modal>

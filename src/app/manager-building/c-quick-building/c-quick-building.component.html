@@ -1,0 +1,62 @@
+<form nz-form [formGroup]="buildingForm" (ngSubmit)="submitForm()" nzLayout="vertical" class="w-full px-4">
+  <div class="grid grid-cols-6 md:gap-4">
+
+    <nz-form-item class="col-span-12 md:col-span-6">
+      <nz-form-label [nzSm]="32" [nzXs]="64" nzFor="name" nzRequired>Tên tòa nhà</nz-form-label>
+      <nz-form-control [nzSm]="32" [nzXs]="64" nzErrorTip="Nhập tên tòa nhà">
+        <input nz-input id="name" formControlName="name" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item class="col-span-12 md:col-span-6">
+      <nz-form-label [nzSm]="32" [nzXs]="64">Chọn tòa nhà sẵn có</nz-form-label>
+      <nz-form-control [nzSm]="32" [nzXs]="64" nzErrorTip="Vui lòng chọn tòa nhà">
+        <nz-select formControlName="city" nzPlaceHolder="Chọn tòa nhà" (ngModelChange)="onProvinceChange($event)"
+          [nzShowSearch]="true">
+          <nz-option *ngFor="let province of provincesList" [nzLabel]="province.name"
+            [nzValue]="province.code"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- Location (Tỉnh/Quận/Xã) -->
+    <nz-form-item class="col-span-12 md:col-span-6">
+      <nz-form-label [nzSm]="32" [nzXs]="64">Tỉnh/Thành phố</nz-form-label>
+      <nz-form-control [nzSm]="32" [nzXs]="64" nzErrorTip="Vui lòng chọn tỉnh/thành phố">
+        <nz-select formControlName="city" nzPlaceHolder="Chọn tỉnh/thành phố" (ngModelChange)="onProvinceChange($event)"
+          [nzShowSearch]="true">
+          <nz-option *ngFor="let province of provincesList" [nzLabel]="province.name"
+            [nzValue]="province.code"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item class="col-span-12 md:col-span-6">
+      <nz-form-label [nzSm]="32" [nzXs]="64">Quận/Huyện</nz-form-label>
+      <nz-form-control [nzSm]="32" [nzXs]="64" nzErrorTip="Vui lòng chọn quận/huyện">
+        <nz-select formControlName="districtOrCounty" nzPlaceHolder="Chọn quận/huyện" [disabled]="!districtsList.length"
+          (ngModelChange)="onDistrictChange($event)" [nzShowSearch]="true">
+          <nz-option *ngFor="let district of districtsList" [nzLabel]="district.name"
+            [nzValue]="district.code"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item class="col-span-12 md:col-span-6">
+      <nz-form-label [nzSm]="32" [nzXs]="64">Xã/Phường</nz-form-label>
+      <nz-form-control [nzSm]="32" [nzXs]="64" nzErrorTip="Vui lòng chọn xã/phường">
+        <nz-select formControlName="communeOrWard" nzPlaceHolder="Chọn xã/phường" [disabled]="!communesList.length"
+          [nzShowSearch]="true">
+          <nz-option *ngFor="let commune of communesList" [nzLabel]="commune.name" [nzValue]="commune.code"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item class="col-span-12">
+      <nz-form-label [nzSm]="64" [nzXs]="64" nzFor="streetAddress">Nhập địa chỉ</nz-form-label>
+      <nz-form-control [nzSm]="64" [nzXs]="64">
+        <input nz-input id="streetAddress" formControlName="streetAddress" />
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+</form>

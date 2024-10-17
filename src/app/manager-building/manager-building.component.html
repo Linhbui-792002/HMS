@@ -1,0 +1,147 @@
+<div class="container mt-4">
+  <nz-breadcrumb>
+    <nz-breadcrumb-item>Trang chủ</nz-breadcrumb-item>
+    <nz-breadcrumb-item>Quản lý tòa nhà - phòng</nz-breadcrumb-item>
+  </nz-breadcrumb>
+
+  <div class="w-full mt-4 rounded-md min-h-12 bg-b-white ">
+    <h2 class="pt-2 pl-6 text-xl">Toàn nhà</h2>
+    <div class="flex items-start justify-between w-full gap-4 cdk-custom">
+      <nz-radio-group [(ngModel)]="radioValue" nzButtonStyle="solid"
+        class="flex flex-wrap justify-end gap-2 py-3 ml-5 ">
+
+        <!-- danh sách tòa nhà lấy từ ap getBuilding -->
+        <label nz-radio-button nzValue="A" nz-dropdown [nzDropdownMenu]=" menu1" [nzPlacement]="'bottomRight'">Young
+          House 1
+          <nz-dropdown-menu #menu1="nzDropdownMenu" class="!w-max !min-w-max">
+            <ul nz-menu nzSelectable class="flex flex-col items-end justify-end !w-max">
+              <li nz-menu-item> <span nz-tooltip nzTooltipTitle="Thông tin chi tiết" nzTooltipColor="cyan">
+                  <button nz-button nzType="text">
+                    <span nz-icon nzType="eye" nzTheme="outline" class="text-t-cyan"></span>
+                  </button>
+                </span>
+              </li>
+              <li nz-menu-item> <span nz-tooltip nzTooltipTitle="Chỉnh sửa" nzTooltipColor="geekblue">
+                  <button nz-button nzType="text" (click)="showEditBuildingModal()">
+                    <span nz-icon nzType="edit" nzTheme="outline" class="text-t-geekblue"></span>
+                  </button>
+                </span>
+              </li>
+              <li nz-menu-item> <span nz-tooltip nzTooltipTitle="Xóa" nzTooltipColor="red">
+                  <button nz-button nzType="text">
+                    <span nz-icon nzType="delete" nzTheme="outline" class="text-t-red"></span>
+                  </button>
+                </span>
+              </li>
+            </ul>
+          </nz-dropdown-menu>
+        </label>
+
+        <label nz-radio-button nzValue="B" nz-dropdown [nzDropdownMenu]="menu2">Young House 2
+          <nz-dropdown-menu #menu2="nzDropdownMenu">
+            <ul nz-menu nzSelectable class="flex flex-col items-end justify-end !w-max">
+              <li nz-menu-item> <span nz-tooltip nzTooltipTitle="Thông tin chi tiết" nzTooltipColor="cyan">
+                  <button nz-button nzType="text">
+                    <span nz-icon nzType="eye" nzTheme="outline" class="text-t-cyan"></span>
+                  </button>
+                </span>
+              </li>
+              <li nz-menu-item> <span nz-tooltip nzTooltipTitle="Chỉnh sửa" nzTooltipColor="geekblue">
+                  <button nz-button nzType="text">
+                    <span nz-icon nzType="edit" nzTheme="outline" class="text-t-geekblue"></span>
+                  </button>
+                </span>
+              </li>
+              <li nz-menu-item> <span nz-tooltip nzTooltipTitle="Xóa" nzTooltipColor="red">
+                  <button nz-button nzType="text">
+                    <span nz-icon nzType="delete" nzTheme="outline" class="text-t-red"></span>
+                  </button>
+                </span>
+              </li>
+            </ul>
+          </nz-dropdown-menu>
+        </label>
+        <label nz-radio-button nzValue="C" nz-dropdown [nzDropdownMenu]="menu3">Young House 3
+          <nz-dropdown-menu #menu3="nzDropdownMenu">
+            <ul nz-menu nzSelectable class="flex flex-col items-end justify-end !w-max">
+              <li nz-menu-item> <span nz-tooltip nzTooltipTitle="Thông tin chi tiết" nzTooltipColor="cyan">
+                  <button nz-button nzType="text">
+                    <span nz-icon nzType="eye" nzTheme="outline" class="text-t-cyan"></span>
+                  </button>
+                </span>
+              </li>
+              <li nz-menu-item> <span nz-tooltip nzTooltipTitle="Chỉnh sửa" nzTooltipColor="geekblue">
+                  <button nz-button nzType="text">
+                    <span nz-icon nzType="edit" nzTheme="outline" class="text-t-geekblue"></span>
+                  </button>
+                </span>
+              </li>
+              <li nz-menu-item> <span nz-tooltip nzTooltipTitle="Xóa" nzTooltipColor="red">
+                  <button nz-button nzType="text">
+                    <span nz-icon nzType="delete" nzTheme="outline" class="text-t-red"></span>
+                  </button>
+                </span>
+              </li>
+            </ul>
+          </nz-dropdown-menu>
+        </label>
+
+        <!-- <label nz-radio-button nzValue="D" nz-dropdown [nzDropdownMenu]="menu4">Young House 4
+          <nz-dropdown-menu #menu4="nzDropdownMenu">
+            <ul nz-menu nzSelectable>
+              <li nz-menu-item>Thông tin chi tiết</li>
+              <li nz-menu-item> Chỉnh Sửa</li>
+            </ul>
+          </nz-dropdown-menu>
+        </label>
+        <label nz-radio-button nzValue="D" nz-dropdown [nzDropdownMenu]="menu4">Young House 4
+          <nz-dropdown-menu #menu4="nzDropdownMenu">
+            <ul nz-menu nzSelectable>
+              <li nz-menu-item>Thông tin chi tiết</li>
+              <li nz-menu-item> Chỉnh Sửa</li>
+            </ul>
+          </nz-dropdown-menu>
+        </label>
+        <label nz-radio-button nzValue="D" nz-dropdown [nzDropdownMenu]="menu4">Young House 4
+          <nz-dropdown-menu #menu4="nzDropdownMenu">
+            <ul nz-menu nzSelectable>
+              <li nz-menu-item>Thông tin chi tiết</li>
+              <li nz-menu-item> Chỉnh Sửa</li>
+            </ul>
+          </nz-dropdown-menu>
+        </label>
+        <label nz-radio-button nzValue="D" nz-dropdown [nzDropdownMenu]="menu4">Young House 4
+          <nz-dropdown-menu #menu4="nzDropdownMenu">
+            <ul nz-menu nzSelectable>
+              <li nz-menu-item>Thông tin chi tiết</li>
+              <li nz-menu-item> Chỉnh Sửa</li>
+            </ul>
+          </nz-dropdown-menu>
+        </label> -->
+      </nz-radio-group>
+
+      <div class="flex items-start h-full gap-2 py-3 mr-5">
+        <button nz-button nzType="text"
+          class="flex items-center w-max !bg-b-green !text-t-white hover:!bg-b-success hover:!text-t-white"
+          (click)="showAddBuildingModal()">
+          <span nz-icon nzType="plus-circle" nzTheme="outline"></span>
+          Thêm mới </button>
+
+        <button nz-button nzType="text"
+          class="flex items-center w-max !bg-b-orange !text-t-white hover:!bg-b-orange hover:!text-t-white"
+          (click)="showCreateQuickBuildingModal()">
+          <span nz-icon nzType="plus-circle" nzTheme="outline"></span>
+          Tạo tòa nhà nhanh</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="w-full mt-4 rounded-md min-h-96 bg-b-white">
+    <app-manager-room></app-manager-room>
+    <nz-empty nzNotFoundImage="simple" nzNotFoundContent="Không có dữ liệu !!!" class="pt-10 my-auto"
+      *ngIf="isEmptyData"></nz-empty>
+  </div>
+
+
+</div>
