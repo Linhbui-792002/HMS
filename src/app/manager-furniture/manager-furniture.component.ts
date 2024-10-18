@@ -22,7 +22,7 @@ import {
 } from './manager-furnitures.store.selector';
 import * as FurnituresActions from './manager-furnitures.store.action';
 import { LoadingComponent } from '../common-service/loading-services/loading.component';
-import cloneDeep from 'lodash/cloneDeep';
+// import cloneDeep from 'lodash/cloneDeep';
 
 @Component({
   selector: 'app-manager-furniture-ui',
@@ -134,7 +134,7 @@ export class ManagerFurnituresComponent
         if (Object.keys(state).length > 0) {
           setTimeout(() => {
             this.loadingComponent.finish();
-            this.rootInitFurnituresResponse = cloneDeep(state.metadata);
+            this.rootInitFurnituresResponse =state.metadata;
             this.initFurnituresResponse = state.metadata;
             this.options.totalRecords = state.metadata.totalRecords;
           }, 1000);
